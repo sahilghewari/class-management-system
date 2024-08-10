@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "title": "Math Homework 1",
+      "description": "Solve the problems in chapter 5 of the textbook.",
+      "fileUrl": "https://example.com/files/math-homework-1.pdf"
+    },
+    {
+      "id": 2,
+      "title": "Science Project",
+      "description": "Prepare a project on the solar system and present it.",
+      "fileUrl": "https://example.com/files/science-project.pdf"
+    },
+    {
+      "id": 3,
+      "title": "History Essay",
+      "description": "Write an essay on the French Revolution.",
+      "fileUrl": "https://example.com/files/history-essay.pdf"
+    },
+    {
+      "id": 4,
+      "title": "English Literature Reading",
+      "description": "Read the first five chapters of 'To Kill a Mockingbird'.",
+      "fileUrl": "https://example.com/files/english-literature-reading.pdf"
+    },
+    {
+      "id": 5,
+      "title": "Art Assignment",
+      "description": "Create a painting based on the theme 'Nature'.",
+      "fileUrl": "https://example.com/files/art-assignment.pdf"
+    }
+  ]
+  

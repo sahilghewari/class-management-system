@@ -1,8 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { FaVideo, FaFileAlt, FaClipboardList, FaCalendarAlt, FaUserCircle } from 'react-icons/fa';
 import './styles/TeacherDashboard.css';
-import { FaVideo, FaFileAlt, FaClipboardList, FaCalendarAlt } from 'react-icons/fa';
 
 const TeacherDashboard = () => {
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const [isManagingAccount, setIsManagingAccount] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+  const navigate = useNavigate();
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken'); // Example for clearing a token from localStorage
+    navigate('/login'); // Redirect to login page
+  };
+
+  const showManageAccount = () => {
+    setIsManagingAccount(true);
+    setDropdownVisible(false); // Hide dropdown when Manage Account is clicked
+  };
+
+  const hideManageAccount = () => {
+    setIsManagingAccount(false);
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    
+    // Add your code to update account info to the backend here
+  };
+
   const notifications = [
     "New assignment uploaded.",
     "Class 10A's attendance has been updated.",
@@ -18,16 +65,16 @@ const TeacherDashboard = () => {
     { day: "Tuesday", time: "09:00 AM - 10:00 AM", subject: "Biology" },
     { day: "Tuesday", time: "10:15 AM - 11:15 AM", subject: "History" },
     { day: "Tuesday", time: "11:30 AM - 12:30 PM", subject: "Geography" },
-    // Add more timetable entries here...
   ];
 
   return (
     <div className="teacher-dashboard">
       <div className="sidebar">
-        <FaCalendarAlt className="icon" />
         <FaVideo className="icon" />
         <FaFileAlt className="icon" />
-        <FaClipboardList className="icon" />
+        <Link to="/assignments">
+          <FaClipboardList className="icon" />
+        </Link>
       </div>
 
       <div className="main-content">
@@ -38,7 +85,15 @@ const TeacherDashboard = () => {
             </div>
             <div className="search-and-profile">
               <input type="text" placeholder="Search" className="search-bar" />
-              <div className="profile-icon"></div>
+              <div className="profile-icon" onClick={toggleDropdown}>
+                <FaUserCircle size={40} />
+                {isDropdownVisible && (
+                  <div className="profile-dropdown">
+                    <a  onClick={showManageAccount}>Manage Account</a>
+                    <a  onClick={handleLogout}>Log Out</a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -51,10 +106,12 @@ const TeacherDashboard = () => {
               <h3>Documents</h3>
               <FaFileAlt size={40} />
             </div>
-            <div className="card small-card assignments">
-              <h3>Assignments</h3>
-              <FaClipboardList size={40} />
-            </div>
+            <Link to="/assignments">
+              <div className="card small-card assignments">
+                <h3>Assignments</h3>
+                <FaClipboardList size={40} />
+              </div>
+            </Link>
           </div>
 
           <div className="large-card time-table">
@@ -80,6 +137,68 @@ const TeacherDashboard = () => {
           ))}
         </div>
       </div>
+
+      {isManagingAccount && (
+        <div className={`modal-overlay ${isManagingAccount ? 'active' : ''}`}>
+          <div className="modal-content">
+            <h2>Manage Account</h2>
+            <form className="manage-account-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  placeholder="Enter your username"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Enter a new password"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  placeholder="Confirm your new password"
+                />
+              </div>
+              <div className="manage-account-actions">
+                <button type="submit" className="update-button">
+                  Update Account
+                </button>
+                <button type="button" className="back-button" onClick={hideManageAccount}>
+                  Back to Dashboard
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -8,14 +8,19 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const assignmentRoutes = require('./routes/assignmentRoutes');
-
+const userRoutes = require('./routes/users');
 const app = express();
 const port = process.env.PORT || 5000;
+const authenticateToken = require('./middleware/auth');
+const assignmentRoutes = require('./routes/assignments'); // Import assignment routes
+
+
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // For parsing application/json
+
+
 
 // MongoDB Connection
 const MONGODB_URI = 'mongodb+srv://sahilghewari:sahil2004@cluster0.qawz3bg.mongodb.net/sampledb?retryWrites=true&w=majority&appName=Cluster0';
@@ -29,7 +34,10 @@ connection.once('open', () => {
 
 // Routes
 const usersRouter = require('./routes/users');
-app.use('/api/assignments', assignmentRoutes);
+app.use('/api', userRoutes); // Register routes with '/api' prefix
+app.use('/api/assignments', assignmentRoutes); // Register assignment routes with '/api/assignments' prefix
+
+
 
 
 app.use('/users', usersRouter);
