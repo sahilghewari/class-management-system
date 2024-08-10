@@ -1,0 +1,83 @@
+.header {
+  background-color: #7091e6; /* Primary Color */
+  color: #f7f9fc; /* Background Color */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #7091e6; /* Secondary Color */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo h1 {
+  margin: 0;
+  color: #f7f9fc; /* Background Color */
+}
+
+.search-bar {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input {
+  width: 60%;
+  padding: 8px;
+  border: 2px solid #7091e6; /* Secondary Color */
+  border-radius: 4px;
+  font-size: 16px;
+  color: #2e2e2e; /* Text Color */
+  background-color: #f7f9fc; /* Background Color */
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #8697c4; /* Muted Color */
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.teacher-name {
+  margin-right: 20px;
+  color: #f7f9fc; /* Background Color */
+  font-size: 16px;
+}
+
+.notifications {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.notification-icon {
+  font-size: 20px;
+  color: #f7f9fc; /* Background Color */
+}
+
+.notification-count {
+  background-color: #ede8f5; /* Accent Color */
+  color: #f7f9fc; /* Background Color */
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 12px;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+}

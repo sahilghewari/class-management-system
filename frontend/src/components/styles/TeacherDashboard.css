@@ -1,0 +1,184 @@
+/* General Styles */
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background: #c5c5f3; /* Light grey background */
+  color: #a8bdf3; /* Dark grey for text */
+}
+
+.teacher-dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 60px;
+  background: linear-gradient(180deg, #3d52a0, #5a78c7); /* Deep to Medium blue gradient */
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon {
+  margin-top: 90px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-right: 300px; /* Leave space for the notification center */
+}
+
+/* Top Section */
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.overview-text h2 {
+  color: #081d68; /* Deep blue */
+  font-size: 38px;
+  font-style: italic;
+  font-family: cursive;
+  font-weight: 1000;
+}
+
+.search-and-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-bar {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar:focus {
+  box-shadow: 0 0 10px rgba(61, 82, 160, 0.3); /* Soft blue shadow */
+}
+
+/* Cards Overview */
+.cards-overview {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.small-card {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.videos {
+  background: linear-gradient(180deg, #7091e6, #8697c4); /* Light to Muted blue-grey */
+}
+
+.documents {
+  background: linear-gradient(180deg, #5a78c7, #7091e6); /* Medium to Light blue */
+}
+
+.assignments {
+  background: linear-gradient(180deg, #3d52a0, #5a78c7); /* Deep to Medium blue */
+}
+
+.large-card {
+  background: linear-gradient(180deg, #8697c4, #adbbda); /* Muted blue-grey to lighter grey */
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Timetable Styles */
+.time-table {
+  color: white;
+}
+
+.timetable {
+  width: 100%;
+}
+
+.timetable-entry {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: background 0.3s ease;
+}
+
+.timetable-entry:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Notification Center */
+.notification-center {
+  width: 280px;
+  padding: 20px;
+  background: linear-gradient(180deg, #7091e6, #8697c4); /* Light to Muted blue-grey */
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+
+.notification-center h3 {
+  margin-bottom: 10px;
+}
+
+.notification {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.notification:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

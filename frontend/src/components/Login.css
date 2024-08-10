@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url('class.jpg');
+  background-image: url('./assets/class.jpg');
   background-size: cover;
   animation: fadeIn 2s ease-in-out;
 }

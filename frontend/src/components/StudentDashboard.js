@@ -1,5 +1,5 @@
 import React from 'react';
-import './StudentDashboard.css';
+import './styles/StudentDashboard.css';
 
 // Importing components
 //

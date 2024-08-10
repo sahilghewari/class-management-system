@@ -1,0 +1,19 @@
+.notification-center {
+  padding: 20px;
+}
+
+.notification-center h2 {
+  margin-bottom: 10px;
+}
+
+.notification-center ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.notification-center li {
+  background: #f5f5f5;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}

@@ -1,0 +1,40 @@
+
+
+.class-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.class-button {
+  background-color: #66fcf1;
+
+  color: #1f2833;
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+  font-size: 18px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.class-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.class-button h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.class-button p {
+  margin: 5px 0;
+  font-size: 16px;
+}
