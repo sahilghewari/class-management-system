@@ -1,5 +1,6 @@
 // backend/index.js
 
+const path = require('path');
 
 
 const express = require('express');
@@ -11,15 +12,30 @@ const jwt = require('jsonwebtoken');
 const userRoutes = require('./routes/users');
 const app = express();
 const port = process.env.PORT || 5000;
-const authenticateToken = require('./middleware/auth');
 const assignmentRoutes = require('./routes/assignments'); // Import assignment routes
+const cron = require('node-cron');
+const documentRoutes = require('./routes/documents');
+
 
 
 
 // Middleware
 app.use(cors());
 app.use(express.json()); // For parsing application/json
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files
 
+
+
+// Scheduled task to delete assignments past their due date
+cron.schedule('0 0 * * *', async () => { // Runs every day at midnight
+  try {
+    const now = new Date();
+    const result = await AddedAssignment.deleteMany({ dueDate: { $lt: now } });
+    console.log(`${result.deletedCount} overdue assignments deleted.`);
+  } catch (error) {
+    console.error('Error deleting overdue assignments:', error);
+  }
+});
 
 
 // MongoDB Connection
@@ -36,6 +52,7 @@ connection.once('open', () => {
 const usersRouter = require('./routes/users');
 app.use('/api', userRoutes); // Register routes with '/api' prefix
 app.use('/api/assignments', assignmentRoutes); // Register assignment routes with '/api/assignments' prefix
+app.use('/api/documents', documentRoutes); // Register document routes with '/api/documents' prefix
 
 
 

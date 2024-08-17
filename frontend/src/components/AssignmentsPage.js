@@ -5,7 +5,7 @@ import './styles/AssignmentsPage.css';
 
 const AssignmentsPage = () => {
   const [assignments, setAssignments] = useState([]);
-  const [newAssignments, setNewAssignments] = useState([]);
+  const [addedAssignments, setAddedAssignments] = useState([]);
   const [newAssignment, setNewAssignment] = useState({
     title: '',
     description: '',
@@ -23,6 +23,15 @@ const AssignmentsPage = () => {
       .catch(error => {
         console.error('There was an error fetching the assignments!', error);
       });
+
+    // Fetch added assignments from the server
+    axios.get('http://localhost:5000/api/assignments/added')
+      .then(response => {
+        setAddedAssignments(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the added assignments!', error);
+      });
   }, []);
 
   const handleChange = (e) => {
@@ -34,12 +43,28 @@ const AssignmentsPage = () => {
 
   const handleAddAssignment = (e) => {
     e.preventDefault();
-    setNewAssignments([...newAssignments, { ...newAssignment, id: newAssignments.length + 1 }]);
-    setNewAssignment({
-      title: '',
-      description: '',
-      dueDate: '',
-    });
+    axios.post('http://localhost:5000/api/assignments/added', newAssignment)
+      .then(response => {
+        setAddedAssignments([...addedAssignments, response.data]);
+        setNewAssignment({
+          title: '',
+          description: '',
+          dueDate: '',
+        });
+      })
+      .catch(error => {
+        console.error('There was an error adding the assignment!', error);
+      });
+  };
+
+  const handleDeleteAssignment = (id) => {
+    axios.delete(`http://localhost:5000/api/assignments/added/${id}`)
+      .then(() => {
+        setAddedAssignments(addedAssignments.filter(assignment => assignment._id !== id));
+      })
+      .catch(error => {
+        console.error('There was an error deleting the assignment!', error);
+      });
   };
 
   const handleGoBack = () => {
@@ -58,6 +83,7 @@ const AssignmentsPage = () => {
               <span className="due-date">Due Date: {new Date(assignment.dueDate).toLocaleDateString()}</span>
               <p>Submitted By: {assignment.submittedBy}</p>
               <a href={assignment.fileUrl} target="_blank" rel="noopener noreferrer">View File</a>
+              <button className="delete-button" onClick={() => handleDeleteAssignment(assignment._id)}>Delete</button>
             </div>
           ))}
         </div>
@@ -105,15 +131,15 @@ const AssignmentsPage = () => {
           </div>
         </form>
       </div>
-
       <div className="added-assignments-section">
         <h2>Added Assignments</h2>
         <div className="assignments-list">
-          {newAssignments.map((assignment) => (
-            <div key={assignment.id} className="assignment-card">
+          {addedAssignments.map((assignment) => (
+            <div key={assignment._id} className="assignment-card">
               <h3>{assignment.title}</h3>
               <p>{assignment.description}</p>
-              <span className="due-date">Due Date: {assignment.dueDate}</span>
+              <span className="due-date">Due Date: {new Date(assignment.dueDate).toLocaleDateString()}</span>
+              <button className="delete-button" onClick={() => handleDeleteAssignment(assignment._id)}>Delete</button>
             </div>
           ))}
         </div>

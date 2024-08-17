@@ -144,7 +144,7 @@ body {
   margin-bottom: 20px;
 }
 
-.videos {
+.students-list {
   background: linear-gradient(180deg, #7091e6, #8697c4); /* Light to Muted blue-grey */
 }
 
@@ -254,7 +254,9 @@ body {
     backdrop-filter: blur(4px); /* Blurred background effect */
 
 }
-
+.modal-content h2 {
+color: white;
+}
 .modal-overlay.active .modal-content {
   transform: translateY(0);
   opacity: 1;
@@ -293,6 +295,9 @@ body {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
+  max-width: 200px;
+  height: 60px;
+  margin-top: 20px;
 }
 
 .back-button {
@@ -302,4 +307,7 @@ body {
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
+  max-width: 200px;
+  height: 60px;
+  
 }

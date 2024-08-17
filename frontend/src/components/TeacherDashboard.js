@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { FaVideo, FaFileAlt, FaClipboardList, FaCalendarAlt, FaUserCircle } from 'react-icons/fa';
+import { FaUserGraduate, FaFileAlt, FaClipboardList, FaCalendarAlt, FaUserCircle } from 'react-icons/fa'; // Update the import for the new icon
 import './styles/TeacherDashboard.css';
 
 const TeacherDashboard = () => {
@@ -70,8 +70,12 @@ const TeacherDashboard = () => {
   return (
     <div className="teacher-dashboard">
       <div className="sidebar">
-        <FaVideo className="icon" />
-        <FaFileAlt className="icon" />
+        <Link to="/students">
+          <FaUserGraduate className="icon" /> {/* Updated icon */}
+        </Link>
+        <Link to="/teacher/documents">
+          <FaFileAlt className="icon" />
+        </Link>
         <Link to="/assignments">
           <FaClipboardList className="icon" />
         </Link>
@@ -89,8 +93,8 @@ const TeacherDashboard = () => {
                 <FaUserCircle size={40} />
                 {isDropdownVisible && (
                   <div className="profile-dropdown">
-                    <a  onClick={showManageAccount}>Manage Account</a>
-                    <a  onClick={handleLogout}>Log Out</a>
+                    <a onClick={showManageAccount}>Manage Account</a>
+                    <a onClick={handleLogout}>Log Out</a>
                   </div>
                 )}
               </div>
@@ -98,14 +102,18 @@ const TeacherDashboard = () => {
           </div>
 
           <div className="cards-overview">
-            <div className="card small-card videos">
-              <h3>Videos</h3>
-              <FaVideo size={40} />
-            </div>
-            <div className="card small-card documents">
-              <h3>Documents</h3>
-              <FaFileAlt size={40} />
-            </div>
+            <Link to="/students">
+              <div className="card small-card students-list">
+                <h3>Students List</h3> {/* Updated text */}
+                <FaUserGraduate size={40} /> {/* Updated icon */}
+              </div>
+            </Link>
+            <Link to="/teacher/documents">
+              <div className="card small-card documents">
+                <h3>Documents</h3>
+                <FaFileAlt size={40} />
+              </div>
+            </Link>
             <Link to="/assignments">
               <div className="card small-card assignments">
                 <h3>Assignments</h3>

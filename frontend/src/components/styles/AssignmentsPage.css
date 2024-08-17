@@ -44,9 +44,11 @@
   width: 45%;
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
   padding: 20px;
   position: relative;
+  margin-left: 20px;
+  max-height: 645px;
 }
 
 
@@ -68,6 +70,23 @@
   margin-bottom: 15px;
   transition: transform 0.3s, box-shadow 0.3s;
   min-width: 400px;
+}
+.delete-button {
+  display: block;
+  width: 30%;
+  background-color: #ff4c4c; /* Red color */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 35%;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a; /* Darker red on hover */
 }
 
 .assignment-card:hover {
@@ -188,4 +207,6 @@ input[type="date"]:focus {
     margin-top: 10px;
     color: #6c757d;
   }
+
+  
   

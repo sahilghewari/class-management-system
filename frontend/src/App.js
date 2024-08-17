@@ -7,6 +7,8 @@ import TeacherDashboard from './components/TeacherDashboard';
 import './App.css';
 import StudentDashboard from './components/StudentDashboard';
 import AssignmentsPage from './components/AssignmentsPage';
+import DocumentUpload from './components/DocumentUpload'; // Import DocumentUpload component
+
 
 
 
@@ -25,6 +27,8 @@ function App() {
           <Route path="/teacher/dashboard/*" element={isAuthenticated() ? <TeacherDashboard /> : <Navigate to="/login" />} />
           <Route path="/student/dashboard" element={isAuthenticated() ? <StudentDashboard /> : <Navigate to="/login" />} />
           <Route path="/assignments" element={<AssignmentsPage />} />
+          <Route path="/teacher/documents" element={<DocumentUpload />} /> {/* Added route for DocumentUpload */}
+
 
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
